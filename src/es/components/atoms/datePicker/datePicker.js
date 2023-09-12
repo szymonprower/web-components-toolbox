@@ -16,11 +16,10 @@ function isLeapYear(year) {
 class Day {
   constructor(date = new Date(), lang = 'default') {
     date = date ?? new Date();
-
     this.Date = date;
     this.date = date.getDate();
     this.day = date.toLocaleString(lang, { weekday: 'long' });
-    this.dayNumber = date.getDay();
+    this.dayNumber = date.getDay() + 1;
     this.dayShort = date.toLocaleString(lang, { weekday: 'short' });
     this.year = date.getFullYear();
     this.yearShort = date.toLocaleString(lang, { year: '2-digit' });
@@ -109,13 +108,8 @@ class Calendar {
     }
 
     this.weekDays.forEach((_, i) => {
-      console.log(this.weekDays)
       const day = this.month.getDay(i + 1);
       if (!this.weekDays.includes(day.day)) {
-        // starts with Monday => needs to be changeable in v2
-        if (day.dayNumber === 0) {
-          this.weekDays[6] = day.day
-        }
         this.weekDays[day.dayNumber - 1] = day.day
       }
     })
@@ -186,22 +180,10 @@ class Calendar {
  * @type {CustomElementConstructor}
  */
 export default class DatePicker extends Shadow() {
-  // format = 'MMM DD, YYYY';
-  // position = 'bottom';
-  // visible = false;
-  // date = null;
-  // mounted = false;
-  // // elements
-  // toggleButton = null;
-  // calendarDropDown = null;
-  // calendarDateElement = null;
-  // calendarDaysContainer = null;
-  // selectedDayElement = null;
-
   constructor() {
     super();
 
-    const lang = window.navigator.language;
+    const lang = this.lang ?? window.navigator.language;
     const date = new Date(this.date ?? (this.getAttribute("date") || Date.now()));
 
     // @ts-ignore
@@ -352,16 +334,10 @@ export default class DatePicker extends Shadow() {
 
   toggleCalendar(visible = null) {
     if (visible === null) {
-      console.log("visible", visible)
-
       this.calendarDropDown.classList.toggle('visible');
     } else if (visible) {
-      console.log("visible", visible)
-
       this.calendarDropDown.classList.add('visible');
     } else {
-      console.log("visible", visible)
-
       this.calendarDropDown.classList.add('visible');
     }
 
@@ -607,6 +583,6 @@ export default class DatePicker extends Shadow() {
   }
 
   static get observedAttributes() {
-    return ['date', 'format', 'visible', 'position'];
+    return ['date', 'format', 'visible', 'position', 'lang'];
   }
 }
