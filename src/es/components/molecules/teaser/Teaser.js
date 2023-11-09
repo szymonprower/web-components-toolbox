@@ -11,7 +11,7 @@ import { Intersection } from '../../prototypes/Intersection.js'
  * @type {CustomElementConstructor}
  */
 export default class Teaser extends Intersection() {
-  constructor (options = {}, ...args) {
+  constructor(options = {}, ...args) {
     super({
       importMetaUrl: import.meta.url,
       intersectionObserverInit: { rootMargin: '0px 0px 0px 0px' },
@@ -32,7 +32,7 @@ export default class Teaser extends Intersection() {
     }
   }
 
-  connectedCallback () {
+  connectedCallback() {
     super.connectedCallback()
     this.hidden = true
     const showPromises = []
@@ -59,7 +59,7 @@ export default class Teaser extends Intersection() {
     }
   }
 
-  disconnectedCallback () {
+  disconnectedCallback() {
     super.disconnectedCallback()
     this.removeEventListener('click', this.clickListener)
     if (this.getAttribute('namespace') === 'teaser-overlay-') {
@@ -68,7 +68,7 @@ export default class Teaser extends Intersection() {
     }
   }
 
-  intersectionCallback (entries, observer) {
+  intersectionCallback(entries, observer) {
     this.classList[entries[0] && entries[0].isIntersecting ? 'add' : 'remove']('intersecting')
   }
 
@@ -77,7 +77,7 @@ export default class Teaser extends Intersection() {
    *
    * @return {boolean}
    */
-  shouldRenderCSS () {
+  shouldRenderCSS() {
     return !this.root.querySelector(`:host > style[_css], ${this.tagName} > style[_css]`)
   }
 
@@ -86,7 +86,7 @@ export default class Teaser extends Intersection() {
    *
    * @return {Promise<void>}
    */
-  renderCSS () {
+  renderCSS() {
     if (this.getAttribute('namespace') === 'teaser-overlay-' && this.aArrow) this.aArrow.setAttribute('hover-set-by-outside', '')
     this.css = /* css */`
       :host {
@@ -201,7 +201,7 @@ export default class Teaser extends Intersection() {
    *
    * @return {Promise<void>}
    */
-  fetchTemplate () {
+  fetchTemplate() {
     /** @type {import("../../prototypes/Shadow.js").fetchCSSParams[]} */
     const styles = [
       {
@@ -276,12 +276,17 @@ export default class Teaser extends Intersection() {
           path: `${this.importMetaUrl}./plainer-/plainer-.css`, // apply namespace since it is specific and no fallback
           namespace: false
         }, ...styles], false)
+      case 'teaser-tile-vertical-':
+        return this.fetchCSS([{
+          path: `${this.importMetaUrl}./tile-vertical-/tile-vertical-.css`, // apply namespace since it is specific and no fallback
+          namespace: false
+        }, ...styles], false)
       default:
         return this.fetchCSS(styles, false)
     }
   }
 
-  checkIfLink () {
+  checkIfLink() {
     // accessible and seo conform a tag wrapped around this component
     if (this.hasAttribute('href') && this.parentNode) {
       const a = document.createElement('a')
@@ -294,15 +299,15 @@ export default class Teaser extends Intersection() {
       a.style.textDecoration = 'inherit'
       this.parentNode.replaceChild(a, this)
       a.appendChild(this)
-      this.checkIfLink = () => {}
+      this.checkIfLink = () => { }
     }
   }
 
-  get aPicture () {
+  get aPicture() {
     return this.root.querySelector('a-picture')
   }
 
-  get aArrow () {
+  get aArrow() {
     return this.root.querySelector('a-arrow')
   }
 }

@@ -1,0 +1,62 @@
+:host {
+  box-shadow: 0 0 0.25rem 0.313rem #ededed;
+  border-radius: 0;
+}
+
+@media only screen and (max-width: _max-width_) {
+  :host a {
+    --teaser-tile-vertical-a-margin: auto 0 var(--content-spacing-mobile) 0;
+  }
+}
+
+:host h5 {
+  --teaser-tile-vertical-h5-font-size: 1.125rem;
+  --teaser-tile-vertical-h5-margin: 1rem 0 0.625rem;
+  --teaser-tile-vertical-h5-font-weight: 700;
+}
+
+:host p {
+  --teaser-tile-vertical-p-line-height: 1.688rem;
+  --teaser-tile-vertical-p-margin: 0.5rem 0.938rem 0;
+  --teaser-tile-vertical-p-font-size: 0.938rem;
+  --teaser-tile-vertical-p-text-align: center;
+}
+
+:host figure a-picture {
+  --teaser-tile-vertical-a-picture-height: 6.25rem;
+  --teaser-tile-vertical-a-picture-width: 6.25rem;
+}
+
+:host figure figcaption {
+  --teaser-tile-vertical-figcaption-padding: 1.563rem;
+  --teaser-tile-vertical-figcaption-display: flex;
+  --teaser-tile-vertical-figcaption-flex-direction: column;
+  --teaser-tile-vertical-figcaption-align-items: center;
+  --teaser-tile-vertical-figcaption-height: min(29.375rem, auto);
+}
+
+:host a {
+  --teaser-tile-vertical-figcaption-color: var(--teaser-tile-vertical-figcaption-color-custom, var(--color-secondary, var(--m-orange-700)));
+  --teaser-tile-vertical-figcaption-color-hover: var(--color-secondary, var(--m-orange-700));
+  --teaser-tile-vertical-a-font-weight: 800;
+  --teaser-tile-vertical-a-text-decoration: none;
+  --teaser-tile-vertical-a-margin: auto 0 var(--content-spacing) 0;
+}
+
+:host a:hover, :host a:active, :host a:focus {
+  --teaser-tile-vertical-a-color-hover: var(--color-secondary, var(--m-orange-700));
+  --teaser-tile-vertical-a-text-decoration-hover: underline 0.125rem;
+  --teaser-tile-vertical-a-text-underline-offset: 0.5rem;
+}
+
+:host p a {
+  font-weight: 400;
+  --teaser-tile-vertical-a-text-decoration: underline;
+}
+
+:host p a:hover {
+  color: #ffffff;
+  background-color: var(--color-secondary, var(--m-orange-700));
+  text-underline-offset: 0;
+}
+
