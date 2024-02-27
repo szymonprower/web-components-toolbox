@@ -8,7 +8,7 @@ Yet another resource is the `README.md` about various rules and tod's of the web
 
 ## Bird's Eye View
 
-![](https://user-images.githubusercontent.com/1711539/50114578-e8a34280-0255-11e9-902c-7cfc70747966.png)
+![](https://placehold.co/900x600)
 
 On the highest level, the web-component-toolbox is organized around UI components of varying levels of abstraction - atoms, molecules, organisms... Each UI component is implemented as a Web Component using custom elements, shadow DOM, HTML templates etc. This encapsulates the markup, styles, and behavior of the component. Components expose custom CSS properties to enable styling by consumers. Scoped styling variables avoid clashes.
 
@@ -26,23 +26,23 @@ This section talks briefly about various important directories and data structur
 
 ### Atoms
 These are basic HTML elements like inputs, buttons, images etc. wrapped as web components with proper styling and behavior.
-Example: `<a-button>`,`<a-input>`
+Example: `<a-button>`, `<a-input>`
 
 ### Molecules
 These are simple groups of UI elements composing a component.
-Example: <m-teaser>, <m-navigation>
+Example:`<m-teaser>`, `<m-navigation>`
 
 ### Organisms
 These are complex UI components composing of molecules and atoms.
-Example: <o-header>, <o-footer>
+Example: `<o-header>`, `<o-footer>`
 
 ### Controllers
 These are not visual components, but JavaScript classes for handling logic/state. connect components to APIs/data.
-Example: <c-filter>
+Example: `<c-filter>`, `<c-recipe>`
 
 ### Pages
 Complete page templates made of multiple organisms.
-Example: <p-home>, <p-settings>
+Example: `<p-home>`, `<p-settings>`
 
 ### Loading Components
 The wc-config.js handles dynamically loading components via HTML imports.
