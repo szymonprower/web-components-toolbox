@@ -72,4 +72,3 @@ Contains documentation for using the components.
 Main config file for loading components on the page.
 
 ### `demo`
-### `demo`
