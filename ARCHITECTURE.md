@@ -25,7 +25,7 @@ Tests are implemented using Playwright in e2e folder.
 This section talks briefly about various important directories and data structures. The components are organized from low-level to high-level abstractions.
 
 ### Atoms
-These are basic HTML elements like inputs, buttons, images etc. wrapped as web components with proper styling and behavior.
+These are basic HTML elements like inputs, buttons, etc. wrapped as Web Components with proper styling and behavior.
 Example: `<a-button>`, `<a-input>`
 
 ### Molecules
@@ -37,7 +37,7 @@ These are complex UI components composing of molecules and atoms.
 Example: `<o-header>`, `<o-footer>`
 
 ### Controllers
-These are not visual components, but JavaScript classes for handling logic/state. connect components to APIs/data.
+These are not visual components, but JavaScript classes for handling logic/state and connecting components to APIs.
 Example: `<c-filter>`, `<c-recipe>`
 
 ### Pages
@@ -45,17 +45,13 @@ Complete page templates made of multiple organisms.
 Example: `<p-home>`, `<p-settings>`
 
 ### Loading Components
-The wc-config.js handles dynamically loading components via HTML imports.
-It loads components on demand based on which ones are used on the page.
+The `wc-config.js` handles dynamically loading components via HTML imports. It loads components on demand based on which ones are used on the page.
 
 ### Styling
-Shared styles are in styles/ folder. Components have local styles for encapsulation.
-Custom app styles can override via CSS variables. The styling is based on CSS custom properties defined in :root. This allows themeing by just overriding variable values.
-Global styles are in variablesCustom.css which components can import. Components have local styles in their shadow roots.
+Shared styles are in `css/` folder. Components have local styles for encapsulation. Custom app styles can override via CSS variables. The styling is based on CSS custom properties defined in `:root`. This allows themeing by just overriding variable values. Global styles are in `variablesCustom.css` which components can import. Components have local styles in their shadow roots.
 
 ### Connectivity
-The components are loosely coupled and communicate via events and data binding. Parent components use light DOM to compose child components.
-Slotted content allows components to be populated from outside their shadow roots.
+The components are loosely coupled and communicate via events and data binding. Parent components use light DOM to compose child components. Slotted content allows components to be populated from outside their shadow roots.
 
 ### Testing
 Unit tests for components are in test/ folder.
