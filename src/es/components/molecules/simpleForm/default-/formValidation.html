@@ -80,17 +80,17 @@
         value="" name="NumberText" placeholder="Nur und max vier Nummer hier eingeben(3456)..." autocomplete="off" />
     </div>
     <div>
-      <label for="BankAccount">IBAN => format-helper-value:[[CCNN] [NNNN] [NNNN] [UU##] [NNNN]]</label>
+      <label for="BankAccount">IBAN => format-helper-value: xxxx xxxx xxxx xxxx</label>
       <input id="BankAccount"
         data-m-v-rules='{"required": {"error-message": "Bitte diese Feld ausfüllen"},
-      "pattern": {"pattern-value":"", "mask-value": "[[CCNN] [NNNN] [NNNN] [UU##] [NNNN]]", "error-message": "Bitte richtige IBAN eingeben."}}'
-        type="text" value="" name="BankAccount" placeholder="CH34 3456 7890 1234 1234" autocomplete="off" />
+      "pattern": {"pattern-value":"", "mask-value": "xxxx xxxx xxxx xxxx", "error-message": "Bitte richtige IBAN eingeben."}}' type="text"
+        value="" name="BankAccount" placeholder="CH34 3456 7890 1234 1234" autocomplete="off" />
     </div>
     <div>
-      <label for="Phone">Telephone => format-helper-value:[[NNN]/[NNN]-[NN]-[NN]]</label>
+      <label for="Phone">Telephone => format-helper-value: xxx xxx xx xx</label>
       <input id="Phone"
         data-m-v-rules='{"required": {"error-message": "Bitte diese Feld ausfüllen"},
-      "pattern": {"pattern-value":"", "mask-value": "[[NNN]/[NNN]-[NN]-[NN]]", "error-message": "Bitte richtige Phonenummer eingeben."}}'
+      "pattern": {"pattern-value":"", "mask-value": "xxx xxx xx xx", "error-message": "Bitte richtige Phonenummer eingeben."}}'
         type="text" value="" name="Phone" placeholder="Phone hier eingeben..." autocomplete="off" />
     </div>
     <div>
