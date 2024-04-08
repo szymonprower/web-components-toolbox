@@ -64,6 +64,13 @@ export const Validation = (ChosenClass = Shadow()) => class Validation extends C
       }
     }
 
+    this.validationPatternInputEventListenerTwo = (event) => {
+      const inputField = event.currentTarget
+      const splittedMaskPattern = this.validationValues[event.currentTarget.getAttribute('name')]['pattern']['mask-value']
+      let splittedInputValue = inputField.value
+      console.log("hu", splittedMaskPattern, splittedInputValue)
+    }
+
     this.submitFormValidation = (event) => {
       event.preventDefault()
       Object.keys(this.validationValues).forEach(key => {
@@ -140,7 +147,7 @@ export const Validation = (ChosenClass = Shadow()) => class Validation extends C
               this.validationValues[node.getAttribute('name')] = this.validationValues[node.getAttribute('name')] ? Object.assign(this.validationValues[node.getAttribute('name')], { isTouched: false }) : {}
               this.validationValues[node.getAttribute('name')][key] = Object.assign(parsedRules[key], { isValid: false })
               if (this.validationValues[node.getAttribute('name')]['pattern'] && this.validationValues[node.getAttribute('name')]['pattern'].hasOwnProperty('mask-value')) {
-                node.addEventListener('input', this.validationPatternInputEventListener)
+                node.addEventListener('input', this.validationPatternInputEventListenerTwo)
               }
             })
           }
