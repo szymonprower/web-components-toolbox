@@ -77,7 +77,7 @@ export default class Body extends Anchor() {
         margin: 0;
       }
       :host > main > * {
-        margin: var(--any-content-spacing, var(--content-spacing, unset)) auto;  /* Warning! Keep horizontal margin at auto, otherwise the content width + margin may overflow into the scroll bar */
+        margin: var(--any-content-spacing-custom, var(--any-content-spacing, var(--content-spacing, unset)) auto);  /* Warning! Keep horizontal margin at auto, otherwise the content width + margin may overflow into the scroll bar */
         width: var(--any-content-width, var(--content-width, 55%));
       }
       :host > main > a[wrapper] {
