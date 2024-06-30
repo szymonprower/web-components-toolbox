@@ -1333,15 +1333,50 @@ export default class MultiLevelNavigation extends Mutation() {
       let possibleUlWidth = headerWidth - headerMargin - logoWidth
       let sumLisWidth = 0
       setTimeout(() => {
-        const mainNavigationLiTags = Array.from(this.root.querySelectorAll('nav > ul > li:not([only-mobile], [show-only-mobile])')).sort((a, b) => Number(b.getAttribute('original-width')) - Number(a.getAttribute('original-width')))  
-        const brokeElements = mainNavigationLiTags.filter((li)=> li.hasAttribute('broken-text'))
+        const mainNavigationLiTags = Array.from(this.root.querySelectorAll('nav > ul > li:not([only-mobile], [show-only-mobile])'))
         mainNavigationLiTags.forEach((liElem) => {
           liElem.hasAttribute('original-width') ? sumLisWidth += Number(liElem.getAttribute('original-width')) : sumLisWidth += 0
         })
         if (sumLisWidth <= possibleUlWidth) return
         else {
-          console.log("brokeElements", brokeElements)
-          // do further from here
+          // get fix-width element
+          let fixedWidthElements = mainNavigationLiTags.filter((el) => !el.hasAttribute('broken-text'))
+          let brokeWidthElements = mainNavigationLiTags.filter((el) => el.hasAttribute('broken-text')).sort((a, b) => Number(b.getAttribute('size-rank')) - Number(a.getAttribute('size-rank')))
+          let fixedElementsWidth = 0
+          fixedWidthElements.forEach((liElem) => liElem.hasAttribute('original-width') ? fixedElementsWidth += Number(liElem.getAttribute('original-width')) : fixedElementsWidth += 0)
+          let restPossibleWidth = possibleUlWidth - fixedElementsWidth
+          let brokeElementsOrigWidth = 0
+          let brokeElementsBrokenWidth = 0
+          let brokeElementsData = []
+
+          brokeWidthElements.forEach((liEl) => {
+            brokeElementsOrigWidth += Number(liEl.getAttribute('original-width'))
+            brokeElementsBrokenWidth += Number(liEl.getAttribute('broken-width'))
+
+            let dataObj = {}
+            dataObj.rank = liEl.getAttribute('size-rank')
+            dataObj.bWidth = liEl.getAttribute('broken-width')
+            dataObj.oWidth = liEl.getAttribute('original-width')
+            dataObj.oText = liEl.getAttribute('broken-text')
+            brokeElementsData.push(dataObj)
+          })
+
+          if (brokeElementsBrokenWidth >= restPossibleWidth) {
+            mainNavigationLiTags.forEach((liEl)=> {
+              let fontSize = Number((liEl.getAttribute('original-desktop-font-size') || '20px').replace('px', ''))
+              let reducedFontSize = Math.ceil(fontSize * 0.9)
+              liEl.querySelector('a').style.setProperty('--multi-level-navigation-default-a-main-font-size', `${reducedFontSize}px`)
+              if(liEl.hasAttribute('broken-text')){
+                liEl.querySelector('a > span').innerHTML = liEl.getAttribute('broken-text')
+              }
+            })
+          }
+
+          if (brokeElementsBrokenWidth < restPossibleWidth) {
+            console.log("brokeElementsBrokenWidth", brokeElementsBrokenWidth)
+            console.log("restPossibleWidth", restPossibleWidth)
+            // restpossible - arr[0]
+          }
         }
       }, 500);
     }
@@ -1372,7 +1407,7 @@ export default class MultiLevelNavigation extends Mutation() {
 
     if (isMultilineText) {
       let splittedTextArray = text.split('<br>')
-      splittedTextArray.sort((a,b) => b.length - a.length)
+      splittedTextArray.sort((a, b) => b.length - a.length)
       let longerText = splittedTextArray[0]
       this.svgtext.textContent = longerText
     }
