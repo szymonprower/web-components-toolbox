@@ -231,6 +231,7 @@ export default class MultiLevelNavigation extends Mutation() {
 
     this.recalculateNavigationHeight()
     this.setActiveNavigationItemBasedOnUrl()
+    this.renderMainAItems()
   }
 
   disconnectedCallback () {
@@ -1294,6 +1295,16 @@ export default class MultiLevelNavigation extends Mutation() {
       const activeNavigationName = navigationItemsUrlNames.filter((navUrl) => subUrls.includes(navUrl))[0]
       const activeNavigationItem = navigationItems?.filter((item) => item.getAttribute('url-name').toLowerCase() === activeNavigationName)[0]
       activeNavigationItem?.classList.add('active')
+    }
+  }
+
+  renderMainAItems() {
+    const mainNavigationUl = this.root.querySelector('nav > ul')
+    const fontSizeBreakPoint = this.root.querySelector('nav > ul').getAttribute('reduce-font-size')
+    const mainNavigationLiTags = Array.from(mainNavigationUl.querySelectorAll('nav > ul > li:not([only-mobile], [show-only-mobile])'))
+
+    if(fontSizeBreakPoint && window.innerWidth < fontSizeBreakPoint){
+      console.log("fontSizeBreakPoint",  fontSizeBreakPoint)
     }
   }
 }
